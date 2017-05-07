@@ -1,0 +1,20 @@
+{
+  "name": "wordcount",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=html --reporter=text mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "vorpal": "^1.12.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "nyc": "^10.3.2"
+  },
+  "description": ""
+}
