@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha",
+    "test": "nyc --reporter=html --reporter=text mocha -c",
+    "localTest": "nyc --reporter=html --reporter=text mocha --reporter nyan -c",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "",
@@ -13,8 +14,10 @@
     "vorpal": "^1.12.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.8",
     "chai": "^3.5.0",
     "coveralls": "^2.13.1",
+    "gulp": "^3.9.1",
     "mocha": "^3.3.0",
     "nyc": "^10.3.2"
   },
