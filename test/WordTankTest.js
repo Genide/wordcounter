@@ -63,15 +63,15 @@ describe("WordTank", function () {
             wordTank = new WordTank(["hello", "world"]);
         })
 
-        it ('Get valid word', () => {
+        it('Get valid word', () => {
             expect(wordTank.getWordCount("hello")).to.eq(1);
         })
 
-        it ('Get missing word', () => {
+        it('Get missing word', () => {
             expect(wordTank.getWordCount("foo")).to.eq(0);
         })
 
-        it ('Invalid parameter', () => {
+        it('Invalid parameter', () => {
             expect(wordTank.getWordCount({})).to.eq(0);
         })
     })
