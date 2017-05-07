@@ -1,5 +1,4 @@
 const chai = require("chai");
-const Car = require("../index.js");
 const expect = chai.expect
 
 describe("Canary", function () {
