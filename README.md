@@ -3,6 +3,7 @@
 ## Wordcounter Setup
 To install program dependencies:
 ```
+npm install -g gulp-cli
 npm install
 ```
 
