@@ -20,13 +20,13 @@ describe("WordTank", function () {
         })
 
         it("Invalid object inside word array", function () {
-            var wordTank = new WordTank([{ foo: "bar" }, "hello"]);
-            expect(wordTank.index).to.deep.eq({ "hello": 1 });
+            var fn = () => {new WordTank([{ foo: "bar" }, "hello"]);}
+            expect(fn).to.throw(TypeError);
         })
 
         it("Invalid parameter", function () {
-            var wordTank = new WordTank({ foo: "bar" });
-            expect(wordTank.index).to.deep.eq({});
+            var fn = () => {new WordTank({ foo: "bar" });}
+            expect(fn).to.throw(TypeError);
         })
     })
 
@@ -42,13 +42,13 @@ describe("WordTank", function () {
         })
 
         it("Index invalid word", function () {
-            wordTank.indexWord(12345678);
-            expect(wordTank.index).to.deep.eq({ "hello": 1 });
+            var fn = () => {wordTank.indexWord(12345678);};
+            expect(fn).to.throw(TypeError);
         })
 
         it('Index empty string', function () {
-            wordTank.indexWord("");
-            expect(wordTank.index).to.deep.eq({ "hello": 1 });
+            var fn = () => {wordTank.indexWord("");};
+            expect(fn).to.throw(Error);
         })
 
         it('Index existing word again', function () {
