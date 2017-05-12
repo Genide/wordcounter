@@ -48,7 +48,7 @@ class WordTank {
      * Indexes a word
      * 
      * @param {string} word Word to index
-     * 
+     * @return {void}
      * @memberOf WordTank
      */
     indexWord(word) {
