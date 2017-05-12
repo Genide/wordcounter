@@ -20,6 +20,7 @@
         "no-unused-vars": "warn",
         "constructor-super": "warn",
         "valid-typeof": "warn",
-        "complexity": ["error", 10]
+        "complexity": ["error", 10],
+        "valid-jsdoc": "warn"
     }
 }

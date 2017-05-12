@@ -6,7 +6,18 @@ var __isStringArr = function(strArr) {
     return true;
 }
 
+/**
+ * WordTank class
+ * 
+ * @class WordTank
+ */     
 class WordTank {
+    /**
+     * Creates an instance of WordTank.
+     * @param {string[]} [wordArray] Array of strings to index
+     * 
+     * @memberOf WordTank
+     */
     constructor(wordArray) {
         this.index = {};
         if (typeof wordArray === "undefined") return;
@@ -17,6 +28,14 @@ class WordTank {
         }
     }
 
+    /**
+     * Gets the amount of times a word has been indexed
+     * 
+     * @param {string} word The word to find
+     * @returns {number} The count of how many times a word has been indexed
+     * 
+     * @memberOf WordTank
+     */
     getWordCount(word) {
         if (typeof word === "string" && word) {
             return this.index[word] || 0;
@@ -25,6 +44,13 @@ class WordTank {
         }
     }
 
+    /**
+     * Indexes a word
+     * 
+     * @param {string} word Word to index
+     * 
+     * @memberOf WordTank
+     */
     indexWord(word) {
         if (typeof (word) === "string") {
             if (word) {
