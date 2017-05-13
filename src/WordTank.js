@@ -1,4 +1,10 @@
-var __isStringArr = function(strArr) {
+/**
+ * Check to see if the object is an string array
+ * 
+ * @param {any} strArr Object to check if is a string array
+ * @returns {boolean} True or false
+ */
+function __isStringArr(strArr) {
     if (!Array.isArray(strArr)) return false;
     strArr.forEach(function (val) {
         if (typeof val !== "string") return false;
@@ -48,7 +54,7 @@ class WordTank {
      * Indexes a word
      * 
      * @param {string} word Word to index
-     * @return {void}
+     * @returns {void}
      * @memberOf WordTank
      */
     indexWord(word) {

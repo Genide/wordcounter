@@ -34,5 +34,5 @@ gulp.task('default', ['test'], function () {
     });
 
     gulp.watch('test/*.js', ['js-watch'])
-    gulp.watch('*.js', ['js-watch'])
+    gulp.watch('src/*.js', ['js-watch'])
 });

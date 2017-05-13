@@ -1,6 +1,6 @@
 const chai = require("chai");
 const expect = chai.expect;
-const WordTank = require("../WordTank.js");
+const WordTank = require("../src/WordTank.js");
 
 describe("WordTank", function () {
     describe("Instance creation", function () {
