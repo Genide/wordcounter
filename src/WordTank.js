@@ -16,7 +16,7 @@ function __isStringArr(strArr) {
  * WordTank class
  * 
  * @class WordTank
- */     
+ */
 class WordTank {
     /**
      * Creates an instance of WordTank.
@@ -58,10 +58,27 @@ class WordTank {
      * @memberOf WordTank
      */
     indexWord(word) {
-        if (typeof (word) === "string") {
+        if (typeof word === "string") {
             if (word) {
                 var count = this.index[word] || 0;
                 this.index[word] = count + 1;
+            } else {
+                throw new Error("Empty string passed in");
+            }
+        } else {
+            throw new TypeError(word.toString() + " is not of type string");
+        }
+    }
+
+    /**
+     * Clears the index of the word
+     * @param {string} word Word to remove from the index
+     * @returns {void}
+     */
+    clearWord(word) {
+        if (typeof word === "string") {
+            if (word) {
+                delete this.index[word];
             } else {
                 throw new Error("Empty string passed in");
             }
