@@ -74,6 +74,7 @@ class WordTank {
      * Clears the index of the word
      * @param {string} word Word to remove from the index
      * @returns {void}
+     * @memberOf WordTank
      */
     clearWord(word) {
         if (typeof word === "string") {
