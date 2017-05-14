@@ -28,7 +28,7 @@ gulp.task('test', function (cb) {
     exec('npm run localTest --silent', { maxBuffer: 1024 * 1024 }, function (error, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
-        cb(error);
+        cb();
     })
 });
 
