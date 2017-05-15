@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 /**
  * Check to see if the object is an string array
  * 
@@ -89,4 +91,4 @@ class WordTank {
     }
 }
 
-module.exports = WordTank;
+export default WordTank;

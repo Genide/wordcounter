@@ -1,5 +1,4 @@
-const chai = require("chai");
-const expect = chai.expect
+import {expect} from 'chai';
 
 describe("Canary", function () {
     it("1 should equal 1", function () {

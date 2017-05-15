@@ -3,6 +3,8 @@ var browserSync = require('browser-sync').create();
 const exec = require('child_process').exec;
 const eslint = require('gulp-eslint');
 const changedInPlace = require('gulp-changed-in-place');
+const babel = require('gulp-babel');
+const sourcemaps = require('gulp-sourcemaps');
 
 var swallowError = function (error) {
     // console.log(error.name);
@@ -40,7 +42,7 @@ gulp.task('lint all', () => {
         // To have the process exit with an error code (1) on
         // lint error, return the stream and pipe to failAfterError last.
         .pipe(eslint.failAfterError());
-})
+});
 
 gulp.task('lint-in-place', () => {
     return gulp.src(['./src/*.js', './test/*.js'])
@@ -48,7 +50,16 @@ gulp.task('lint-in-place', () => {
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
-})
+});
+
+gulp.task('babel', () => {
+    return gulp.src("src/**/*.js")
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        // .pipe(concat("all.js"))
+        .pipe(sourcemaps.write("."))
+        .pipe(gulp.dest("dist"));
+});
 
 gulp.task('watch', (done) => {
     var watcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['lint-in-place', 'test', 'reload']));

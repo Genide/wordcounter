@@ -1,6 +1,5 @@
-const chai = require("chai");
-const expect = chai.expect;
-const WordTank = require("../src/WordTank.js");
+import {expect} from 'chai';
+import WordTank from '../src/WordTank.js';
 
 describe("WordTank", function () {
     describe("Instance creation", function () {

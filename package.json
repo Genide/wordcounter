@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha -c",
-    "localTest": "nyc --reporter=html --reporter=text mocha --reporter nyan -c",
+    "test": "cross-env NODE_ENV=test nyc mocha -c",
+    "localTest": "cross-env NODE_ENV=test nyc mocha --reporter nyan -c",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "",
@@ -14,14 +14,32 @@
     "vorpal": "^1.12.0"
   },
   "devDependencies": {
+    "babel-plugin-istanbul": "^4.1.3",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1",
     "browser-sync": "^2.18.8",
     "chai": "^3.5.0",
     "coveralls": "^2.13.1",
+    "cross-env": "^5.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "^6.1.2",
     "gulp-changed-in-place": "^2.2.0",
     "gulp-eslint": "^3.0.1",
+    "gulp-sourcemaps": "^2.6.0",
     "mocha": "^3.3.0",
     "nyc": "^10.3.2"
   },
-  "description": ""
+  "description": "A simple word counter",
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "html",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false
+  }
 }
