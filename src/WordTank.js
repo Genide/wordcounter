@@ -1,12 +1,10 @@
-import _ from "lodash";
-
 /**
  * Check to see if the object is an string array
  * 
  * @param {any} strArr Object to check if is a string array
  * @returns {boolean} True or false
  */
-function __isStringArr(strArr) {
+var __isStringArr = function(strArr) {
     if (!Array.isArray(strArr)) return false;
     strArr.forEach(function (val) {
         if (typeof val !== "string") return false;

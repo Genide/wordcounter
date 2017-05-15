@@ -5,6 +5,7 @@ const eslint = require('gulp-eslint');
 const changedInPlace = require('gulp-changed-in-place');
 const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
+const changed = require('gulp-changed');
 
 var swallowError = function (error) {
     // console.log(error.name);
@@ -52,17 +53,25 @@ gulp.task('lint-in-place', () => {
         .pipe(eslint.failAfterError())
 });
 
-gulp.task('babel', () => {
+gulp.task('babel_changed', () => {
+    return gulp.src("src/**/*.js")
+        .pipe(changed("dist"))
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(sourcemaps.write("./maps"))
+        .pipe(gulp.dest("dist"));
+});
+
+gulp.task('babel_all', () => {
     return gulp.src("src/**/*.js")
         .pipe(sourcemaps.init())
         .pipe(babel())
-        // .pipe(concat("all.js"))
-        .pipe(sourcemaps.write("."))
+        .pipe(sourcemaps.write("./maps"))
         .pipe(gulp.dest("dist"));
 });
 
 gulp.task('watch', (done) => {
-    var watcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['lint-in-place', 'test', 'reload']));
+    var watcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['lint-in-place', 'test', 'babel_changed', 'reload']));
     watcher.on('change', (path, stats) => {
         console.log(path + ' was changed');
     });
