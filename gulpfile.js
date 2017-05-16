@@ -108,15 +108,15 @@ gulp.task('tsc_changed', () => {
 });
 
 gulp.task('watch', (done) => {
-    var jsWatcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['js_lint_in_place', 'test', 'babel_changed', 'reload']));
-    var tsWatcher = gulp.watch(['./src/*.ts'], gulp.series(['ts_lint_in_place', 'test', 'tsc_changed', 'reload']));
+    // var jsWatcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['js_lint_in_place', 'test', 'babel_changed', 'reload']));
+    var tsWatcher = gulp.watch(['./src/*.ts', './test/*.ts'], gulp.series(['ts_lint_in_place', 'test', 'tsc_changed', 'reload']));
     // watcher.on('change', (path, stats) => {
     //     console.log(path + ' was changed');
     // });
     // This is needed to keep the watcher going if there is an ESLint or test error
-    jsWatcher.on('error', swallowError);
+    // jsWatcher.on('error', swallowError);
     tsWatcher.on('error', swallowError);
     done();
 });
 
-gulp.task('default', gulp.series('lint all', 'test', 'ccView', 'watch'));
+gulp.task('default', gulp.series('tslint_all', 'test', 'ccView', 'watch'));

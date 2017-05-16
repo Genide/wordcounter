@@ -5,6 +5,8 @@
     "compilerOptions": {
         "noImplicitAny": true,
         "target": "es5",
-        "sourceMap": true
+        "sourceMap": true,
+        "removeComments": true,
+        "module": "commonjs"
     }
 }
