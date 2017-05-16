@@ -28,8 +28,12 @@
     "gulp-changed-in-place": "^2.2.0",
     "gulp-eslint": "^3.0.1",
     "gulp-sourcemaps": "^2.6.0",
+    "gulp-tslint": "^8.0.0",
+    "gulp-typescript": "^3.1.6",
     "mocha": "^3.3.0",
-    "nyc": "^10.3.2"
+    "nyc": "^10.3.2",
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
   },
   "description": "A simple word counter",
   "nyc": {

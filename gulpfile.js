@@ -6,6 +6,9 @@ const changedInPlace = require('gulp-changed-in-place');
 const babel = require('gulp-babel');
 const sourcemaps = require('gulp-sourcemaps');
 const changed = require('gulp-changed');
+const ts = require("gulp-typescript");
+const tsProject = ts.createProject("tsconfig.json");
+const tslint = require("gulp-tslint");
 
 var swallowError = function (error) {
     // console.log(error.name);
@@ -45,7 +48,7 @@ gulp.task('lint all', () => {
         .pipe(eslint.failAfterError());
 });
 
-gulp.task('lint-in-place', () => {
+gulp.task('js_lint_in_place', () => {
     return gulp.src(['./src/*.js', './test/*.js'])
         .pipe(changedInPlace())
         .pipe(eslint())
@@ -70,13 +73,49 @@ gulp.task('babel_all', () => {
         .pipe(gulp.dest("dist"));
 });
 
+gulp.task('tslint_all', () => {
+    return tsProject.src()
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report());
+});
+
+gulp.task('ts_lint_in_place', () => {
+    return tsProject.src()
+        .pipe(changedInPlace())
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report());
+});
+
+gulp.task('tsc_all', () => {
+    return tsProject.src()
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(tsProject()).js
+        .pipe(sourcemaps.write("./maps"))
+        .pipe(gulp.dest("dist"));
+});
+
+gulp.task('tsc_changed', () => {
+    return tsProject.src()
+        .pipe(changed("dist"))
+        .pipe(sourcemaps.init({ loadMaps: true }))
+        .pipe(tsProject()).js
+        .pipe(sourcemaps.write("./maps"))
+        .pipe(gulp.dest("dist"));
+});
+
 gulp.task('watch', (done) => {
-    var watcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['lint-in-place', 'test', 'babel_changed', 'reload']));
-    watcher.on('change', (path, stats) => {
-        console.log(path + ' was changed');
-    });
+    var jsWatcher = gulp.watch(['./src/*.js', './test/*.js'], gulp.series(['js_lint_in_place', 'test', 'babel_changed', 'reload']));
+    var tsWatcher = gulp.watch(['./src/*.ts'], gulp.series(['ts_lint_in_place', 'test', 'tsc_changed', 'reload']));
+    // watcher.on('change', (path, stats) => {
+    //     console.log(path + ' was changed');
+    // });
     // This is needed to keep the watcher going if there is an ESLint or test error
-    watcher.on('error', swallowError);
+    jsWatcher.on('error', swallowError);
+    tsWatcher.on('error', swallowError);
     done();
 });
 
