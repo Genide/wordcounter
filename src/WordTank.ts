@@ -52,5 +52,4 @@ class WordTank {
     }
 }
 
-// module.exports = WordTank;
 export default WordTank;

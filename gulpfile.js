@@ -39,7 +39,7 @@ gulp.task('test', function (cb) {
 gulp.task('tslint_all', () => {
     return tsProject.src()
         .pipe(tslint({
-            formatter: "verbose"
+            formatter: "stylish"
         }))
         .pipe(tslint.report());
 });
@@ -48,7 +48,7 @@ gulp.task('ts_lint_in_place', () => {
     return tsProject.src()
         .pipe(changedInPlace())
         .pipe(tslint({
-            formatter: "verbose"
+            formatter: "stylish"
         }))
         .pipe(tslint.report());
 });
